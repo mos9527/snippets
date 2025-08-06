@@ -9,6 +9,6 @@ npm run build SetTargetFramerate.ts
 ```bash
 npm run attach <frida arguments>
 # Example:
-npm run attach -U com.sega.pjsekai
-npm run attach -n UmamusumePrettyDerby.exe
+npm run attach -- -U プロセカ
+npm run attach -- -n UmamusumePrettyDerby.exe
 ```
