@@ -1,4 +1,4 @@
-'''Bundle Frida Gadget into Unity android Player APKs
+'''Bundle Frida Gadget into Android APKs
 
 Tools used:
 - github.com/BotPeaches/Apktool
@@ -97,7 +97,7 @@ IF "%4"=="" GOTO :EOF
     print('Package ready at', outfile)
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(description='Apply Frida gadget and config file to Unity Android Player builds')
+    parser = argparse.ArgumentParser(description='Bundle Frida Gadget into Android APKs')
     parser.add_argument('--arch', default='arm64', help='Architecture of Frida Gadget to download (default: arm64)')
     parser.add_argument('--config', default=None, help='Path to gadget config file. Leave empty to listen on 0.0.0.0:27042')
     parser.add_argument('--inject-target', default='libunity.so', help='Target library to inject Frida gadget into (default: libunity.so)')
