@@ -21,12 +21,16 @@ def regen_unique_bundle(src, packer: str = 'lz4', outpath: str = None):
         if obj.type.name == "AssetBundle":
             data = obj.read()
             data : AssetBundle
+            preload_id_remap = {}
             for i, (name, asset) in enumerate(data.m_Container):
                 new_id = generate_path_id(name)
                 path_id_remap[new_id] = asset.asset.path_id
+                preload_id_remap[asset.asset.path_id] = new_id
                 print(f'REGEN Asset\t{name}->{new_id}')
                 asset.asset.read().object_reader.path_id = new_id
-                asset.asset.m_PathID = new_id                
+                asset.asset.m_PathID = new_id   
+            for preload in data.m_PreloadTable:
+                preload.m_PathID = preload_id_remap.get(preload.m_PathID, preload.m_PathID)
             data.save()
     cab_name_remap = {}
     for i, (name, file) in enumerate(env.file.files.items()):
