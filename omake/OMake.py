@@ -1,4 +1,7 @@
-"""OMake - pOrtable Make framework"""
+"""OMake - pOrtable Make framework
+
+https://github.com/mos9527/snippets/tree/main/omake
+"""
 import os, logging, json, traceback, time
 from typing import List, Generator, Callable
 from pathlib import Path
