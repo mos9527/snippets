@@ -56,8 +56,8 @@ class BuildPrologue:
     outputs: List[Path]
     priority: int = 1
     # ---
-    pid: int = None
-    func: str = None
+    pid: int = 0
+    func: str = ''
 
     def has_modified_inputs(self, cache: BuildCache) -> bool:
         return not all(cache.check(input) for input in self.inputs)
@@ -86,17 +86,17 @@ class BuildPrologue:
 class BuildLog:
     message: str
     # ---
-    pid: int = None
-    func: str = None
+    pid: int = 0
+    func: str = ''
 
 
 @dataclass
 class BuildError:
     exception: Exception
     # ---
-    traceback: str = None
+    traceback: str = ''
     pid: int = 0
-    func: str = None
+    func: str = ''
 
 
 BuildTask = Generator[BuildPrologue | BuildLog | BuildError, None, None]
@@ -285,10 +285,11 @@ class BuildGraph:
                 future.result()
                 self.prolouges[future.task_id].mark_updated(cache)
                 self.exec_success += 1
-            except:
+            except Exception as e:
                 self.exec_errors += 1
                 if self.failfast:
-                    raise RuntimeError("Failfast enabled, stopping execution")
+                    raise e
+                self.logger.error(f"Task {self.prolouges[future.task_id]} failed with exception: {e}")
 
     def _execute_phase_sp(self, phase: list, cache: BuildCache, desc="Phase SP"):
         for task in tqdm(phase, desc=desc):
@@ -298,10 +299,11 @@ class BuildGraph:
                     self._execute_handle_event(event)
                 self.prolouges[task].mark_updated(cache)
                 self.exec_success += 1
-            except:
+            except Exception as e:
                 self.exec_errors += 1
                 if self.failfast:
-                    raise RuntimeError("Failfast enabled, stopping execution")
+                    raise e
+                self.logger.error(f"Task {self.prolouges[task]} failed with exception: {e}")
 
     def _execute_cleanup_mp(self):
         self.mp_queue.put(None)
