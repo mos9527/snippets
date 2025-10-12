@@ -1,0 +1,12 @@
+You know what to do.
+
+git clone https://aur.archlinux.org/bcompare.git/
+cd bcompare
+git checkout 8297be13ebcc57a5dad6acb1d5f8468d43d055e5
+makepkg -crs
+
+127.0.0.1 scootersoftware.com
+
+--- BEGIN LICENSE KEY ---
+6PH9XccqCfErJV22BcWV6wu8437RxW6NFsSoooepbzPPkfAmxPNJDUiV6P61n8come1MJs6DAVXTztWkc6SXaBSRo8HNKT9gaqMPNakTkDBs57rgFpHwss84jo4oDQ6aCz5KY4pAvdQA6yPBz62TDcvXSdMPjFZYApW1rZHznzagaW5Vo3ash5CaTKzfv3oFcjV2XBFWfPt3idXGBDv7bmidM1gMy1hNcNZLW7ixckxrEEL148Ex43uA5fKSEkBrUHH5tjD6U12gdHHKU1dZrFecXqe67ZfMF2xvGawJKUxhkaM1EHnj1CZ8tYTWoG68u4gXCWWmtoesaxGW4ZLAjCgvSo5qub
+--- END LICENSE KEY ---
