@@ -6,14 +6,14 @@
   "type": "module",
   "scripts": {
     "build": "frida-compile -o script.js -w",
-    "attach": "frida -l script.js --runtime=v8"    
+    "attach": "frida -l script.js --runtime=v8"
   },
   "devDependencies": {
     "@types/frida-gum": "^18.3.1",
-    "frida-compile": "^16.4.1",
-    "frida-il2cpp-bridge": "^0.9.1"
+    "frida-compile": "^16.4.1"
   },
   "dependencies": {
-    "frida-fs": "^5.2.5"
+    "frida-fs": "^5.2.5",
+    "frida-il2cpp-bridge": "https://github.com/mos9527/frida-il2cpp-bridge/releases/download/latest/frida-il2cpp-bridge-0.12.1.tgz"
   }
 }
